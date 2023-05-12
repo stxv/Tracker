@@ -1,11 +1,26 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
 @app.route("/")
 @app.route("/home") 
 def home():
-    return "<h1>Home Page<h1>"
+    return render_template("index.html", data = data)
+
+data =[
+    {
+        "Exercise": "bench press",
+        "Sets": "3",
+        "Reps": "10",
+        "Weight": "185",
+    },  
+    {
+        "Exercise": "Squat",
+        "Sets": "3",
+        "Reps": "10",
+        "Weight": "245",
+    }
+]
 
 @app.route("/about") 
 def about():
