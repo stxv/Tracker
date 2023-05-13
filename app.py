@@ -1,43 +1,49 @@
-from flask import Flask, render_template, url_for
-"""from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime """
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime 
 
 app = Flask(__name__)
-"""db = SQLAlchemy()
-db_name = "database.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite=:///{db_name.db}'
-db.init_app(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
 
-class Tracker(db.model):
-    date = db.column(db.String, primary_key= True)
-    content = db.column(db.string(200), nullable = False)
-    date_made = db.column(db.Datetime, default=datetime.utcnow)
+class userdata(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    exercise = db.Column(db.String(50), nullable=False)
+    sets = db.Column(db.Integer, nullable=False)
+    reps = db.Column(db.Integer, nullable=False)
+    weight = db.Column(db.Float, nullable=False)
+    """time = db.Column(db.DateTime, default=datetime.utcnow)"""
 
     def __repr__(self):
-        return "<workout %r> " % self.id"""
+        return f"Exercise: {self.exercise}, Sets: {self.sets}, Reps: {self.reps}, Weight: {self.weight}"
+
+    
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_workout():
+    if request.method == 'POST':
+        exercise = request.form['exercise']
+        sets = request.form['sets']
+        reps = request.form['reps']
+        weight = request.form['weight']
+        workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
+        db.session.add(workout)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('index.html')
+
 @app.route("/")
 @app.route("/home") 
 def home():
-    return render_template("index.html", data = data)
+    workouts = userdata.query.all()
+    return render_template("index.html", workouts=workouts)
 
-data =[
-    {
-        "Exercise": "bench press",
-        "Sets": "3",
-        "Reps": "10",
-        "Weight": "185",
-    },  
-    {
-        "Exercise": "Squat",
-        "Sets": "3",
-        "Reps": "10",
-        "Weight": "245",
-    }
-]
 
 @app.route("/about") 
 def about():
     return "<h1>About Page<h1>"
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

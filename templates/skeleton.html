@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    </head>
-<body>
-    hello world 2
-    {% block content %} {% endblock %}
-</body> 
-<footer>footer</footer>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+    <title>Tracker</title>
+    <body>
+        <h1>Workout Tracker</h1>
+        <table>
+            <tr>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Weight</th>
+            </tr>
+            {% for workout in userdata %}
+            <tr>
+                <td>{{ workout.exercise }}</td>
+                <td>{{ workout.sets }}</td>
+                <td>{{ workout.reps }}</td>
+                <td>{{ workout.weight }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="{{ url_for('add_workout') }}">Add Workout</a>
+    </body>
 </html>
