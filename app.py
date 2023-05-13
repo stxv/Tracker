@@ -30,18 +30,14 @@ def add_workout():
         db.session.add(workout)
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template('index.html')
+    return render_template('add.html')
 
 @app.route("/")
 @app.route("/home") 
 def home():
     workouts = userdata.query.all()
-    return render_template("index.html", workouts=workouts)
+    return render_template("homepage.html", workouts=workouts)
 
-
-@app.route("/about") 
-def about():
-    return "<h1>About Page<h1>"
 
 if __name__ == "__main__":
     with app.app_context():
