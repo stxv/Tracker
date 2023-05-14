@@ -13,16 +13,10 @@
                 <th>Reps</th>
                 <th>Weight</th>
             </tr>
-            {% for workout in userdata %}
-            <tr>
-                <td>{{ workout.exercise }}</td>
-                <td>{{ workout.sets }}</td>
-                <td>{{ workout.reps }}</td>
-                <td>{{ workout.weight }}</td>
-            </tr>
-            {% endfor %}
         </table>
         <br>
-        <a href="{{ url_for('add_workout') }}">Add Workout</a>
+        <button>
+            <a href="{{ url_for('add_workout') }}">Add Workout</a>
+        </button>
     </body>
 </html>

@@ -30,7 +30,8 @@ def add_workout():
         db.session.add(workout)
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template('add.html')
+    else:
+        return render_template('add.html')
 
 @app.route("/")
 @app.route("/home") 
