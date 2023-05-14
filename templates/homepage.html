@@ -3,20 +3,33 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-    <title>Tracker</title>
     <body>
+        <div class = "homePageSection">
         <h1>Workout Tracker</h1>
         <table>
             <tr>
-                <th>Exercise</th>
-                <th>Sets</th>
-                <th>Reps</th>
-                <th>Weight</th>
+                <th> Exercise</th>
+                <th> Sets</th>
+                <th> Reps</th>
+                <th> Weight</th>
+                <th> Date added</th>
+                <th> Actions </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href = ""> Delete</a>
+                    <br>
+                    <a href = ""> Update</a>
+                </td>
             </tr>
         </table>
-        <br>
         <button>
             <a href="{{ url_for('add_workout') }}">Add Workout</a>
         </button>
+        </div>
     </body>
 </html>

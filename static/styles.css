@@ -1,3 +1,12 @@
 body{
     margin: 50px;
 }
+.homePageSection{
+    margin: 0 auto;
+    width: 400px;
+    display:Flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    padding: 5px;
+}

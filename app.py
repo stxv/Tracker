@@ -44,3 +44,6 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+"""Todo: Fix table on homepage, create option to add more execises when creating workout, allow access to database when user creates workout"""
+"""and understand tables"""
