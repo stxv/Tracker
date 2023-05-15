@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Workout</title> <a href="{{ url_for('home') }}">Return</a>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
+        <title>Add Workout</title> <a href="{{ url_for('home') }}">Return</a>
         <h1>Add Workout</h1>
         <form method="POST" action="{{ url_for('add_workout') }}">
             <label for="exercise">Exercise: </label>

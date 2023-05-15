@@ -8,10 +8,18 @@ body{
     align-items: center;
     flex-direction: column;
     border: 1px solid #aaa;
-    padding: 5px;
-}
-th, td, tr{
-    border:1px solid black;
-    margin: 20px;
     padding: 10px;
+}
+th, td{
+    border: 1px solid black;
+    padding: 15px;
+    margin: -10px;
+}
+.viewpage{
+    display:Flex;
+    align-items: center;
+    flex-direction: column;
+}
+button{
+    margin:20px;
 }

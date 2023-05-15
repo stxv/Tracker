@@ -8,11 +8,13 @@
         <h1>Workout Tracker</h1>
         {% if entries|length < 1 %}
         <h3> There are no entries. Add one NOW</h3>
-        {% endif %}
+        <a href="{{ url_for('add_workout') }}">Add Workout</a>
+        {% else %}
         <table>
             <tr>
                 <th> Entries</th>
                 <th> Date added</th>
+                <th> Actions </th>
             </tr>
             <tr>
                 <td>
@@ -20,9 +22,14 @@
                 </td>
                 <!-- Box that allows functions to data-->
                 <td>
-                    <a href = ""> Delete</a>
+                    {% for things in entries%}
+                    {{things.date_created}}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href = "/delete/{{entries.id}}"> Update</a>
                     <br>
-                    <a href = ""> Update</a>
+                    <a href = ""> Delete</a>
                 </td>
         </table>
         <button>
@@ -30,4 +37,5 @@
         </button>
         </div>
     </body>
+    {% endif%}
 </html>

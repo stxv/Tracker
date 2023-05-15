@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
+<div class="viewpage">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+    <a href="{{ url_for('home') }}">Return</a>
     {% for things in entries %}
-    <p> {{things.exercise}} </p>
-    <p> {{things.sets}} </p>
-    <p> {{things.reps}} </p>
-    <p> {{things.weight}} </p>
-    <p> {{things.date_created}} </p>
-    {% endfor %}
+<table>
+    <tr>
+        <th> Exercise </th>
+        <th> Sets</th>
+        <th> Reps </th>
+        <th> Weight </th>
+        <th> Time created </th>
+    </tr>
+        <td>{{things.exercise}} </td>
+        <td>{{things.sets}} </td>
+        <td>{{things.reps}}</td>
+        <td>{{things.weight}}</td>
+        <td>{{things.date_created}}</td>
+</table>
+{% endfor %}
+</div>
 </html>
