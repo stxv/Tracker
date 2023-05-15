@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<div class="viewpage">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+<div class="viewpage"></div>
     <a href="{{ url_for('home') }}">Return</a>
     {% for things in entries %}
 <table>
@@ -21,7 +21,7 @@
         <td>{{things.weight}}</td>
         <td>{{things.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}</td>
         <td> 
-            <a href = ""> Update</a>
+            <a href = "/update/{{things.id}}"> Update</a>
             <br>
             <a href = "/delete/{{things.id}}"> Delete</a>
         </td>

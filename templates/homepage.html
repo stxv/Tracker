@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td>
-                    {% for things in entries%}
+                    {% for things in entries %}
                     <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> link to entry  </a>
                     {% endfor %}
                     <!-- CAN I USE THE ID TO CREATE A SEPARATE PAGE FOR EACH ENTRY USING THESE LOOPS?-->
@@ -31,7 +31,7 @@
                 </td>
                 <td>
                     {% for things in entries %}
-                    <a href = ""> Update</a>
+                    <a href = "/update/{{things.id}}"> Update</a>
                     <br>
                     <a href = "/delete/{{things.id}}"> Delete</a>
                     {% endfor %}

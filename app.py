@@ -33,7 +33,7 @@ def add_workout():
             db.session.commit()
             return redirect(url_for('home'))
         except:
-            return "Issue adding data"
+            return "Something went wrong while adding the data"
     else:
         entries = userdata.query.order_by(userdata.date_created).first()
         return render_template('add.html', entries = entries)
@@ -55,7 +55,7 @@ def view_workout():
         return render_template("view.html",entries = entries)
     
     
-"""This doesn't work yet"""
+"""Deleting function"""
 @app.route("/delete/<int:id>")
 def delete(id):
     desired_entry = userdata.query.get_or_404(id)
@@ -66,6 +66,26 @@ def delete(id):
     except:
         return "Something went wrong with the deletion"
     
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    old_entry = userdata.query.get_or_404(id)
+    if request.method == "POST":
+        exercise = request.form['exercise']
+        sets = request.form['sets']
+        reps = request.form['reps']
+        weight = request.form['weight']
+        new_workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
+
+        try:
+            db.session.add(new_workout)
+            db.session.commit()
+            return redirect(url_for('home'))
+        except:
+            return "There was a problem updating the data"
+    else:
+        return render_template('updatepage.html', old_entry=old_entry)
+
+    
 
 """IDK what name does, dbcreateall makes the database when the program is run, debug allows to see changes quicker"""
 if __name__ == "__main__":
@@ -73,4 +93,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-"""TODO: Have created entries add on top of each other on homepage lists and accessible with each having their own unique information"""
+"""TODO: Have created entries add on top of each other on homepage lists and accessible with each having their own unique information, fix update function"""

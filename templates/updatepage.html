@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
     <body>
-        <title>Add Workout</title> <a href="{{ url_for('home') }}">Return</a>
-        <h1>Add Workout</h1>
+        <title>Update Workout</title> <a href="{{ url_for('home') }}">Return</a>
+        <h1>Update Workout</h1>
+        {% block content %}
         <form method="POST" action="{{ url_for('add_workout') }}">
             <label for="exercise">Exercise: </label>
             <input type="text" name="exercise" required><br><br>
@@ -19,7 +20,8 @@
             <label for="weight">Weight: </label>
             <input type="number" name="weight" required><br><br>
             
-            <input type="submit" value="Add Workout">
+            <input type="submit" value="Update Workout">
+        {% endblock %}
         </form>
     </body>
 </html>
