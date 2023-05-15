@@ -3,7 +3,7 @@ body{
 }
 .homePageSection{
     margin: 0 auto;
-    width: 400px;
+    width: 420px;
     display:Flex;
     align-items: center;
     flex-direction: column;

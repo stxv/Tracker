@@ -35,7 +35,7 @@ def add_workout():
         except:
             return "Issue adding data"
     else:
-        entries = userdata.query.order_by(userdata.date_created).all()
+        entries = userdata.query.order_by(userdata.date_created).first()
         return render_template('add.html', entries = entries)
     
 
@@ -62,7 +62,7 @@ def delete(id):
     try:
         db.session.delete(desired_entry)
         db.session.commit()
-        return redirect("home")
+        return redirect("/")
     except:
         return "Something went wrong with the deletion"
     

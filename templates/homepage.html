@@ -30,9 +30,11 @@
                     {% endfor %}
                 </td>
                 <td>
+                    {% for things in entries %}
                     <a href = ""> Update</a>
                     <br>
-                    <a href = "/delete/{{entries.id}}"> Delete</a>
+                    <a href = "/delete/{{things.id}}"> Delete</a>
+                    {% endfor %}
                 </td>
         </table>
         <button>
