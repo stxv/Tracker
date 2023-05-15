@@ -18,18 +18,21 @@
             </tr>
             <tr>
                 <td>
+                    {% for things in entries%}
                     <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> link to entry  </a>
+                    {% endfor %}
+                    <!-- CAN I USE THE ID TO CREATE A SEPARATE PAGE FOR EACH ENTRY USING THESE LOOPS?-->
                 </td>
                 <!-- Box that allows functions to data-->
                 <td>
                     {% for things in entries%}
-                    {{things.date_created}}
+                    {{things.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}
                     {% endfor %}
                 </td>
                 <td>
-                    <a href = "/delete/{{entries.id}}"> Update</a>
+                    <a href = ""> Update</a>
                     <br>
-                    <a href = ""> Delete</a>
+                    <a href = "/delete/{{entries.id}}"> Delete</a>
                 </td>
         </table>
         <button>

@@ -11,14 +11,20 @@
         <th> Exercise </th>
         <th> Sets</th>
         <th> Reps </th>
-        <th> Weight </th>
+        <th> Weight (lbs) </th>
         <th> Time created </th>
+        <th> Actions</th>
     </tr>
         <td>{{things.exercise}} </td>
         <td>{{things.sets}} </td>
         <td>{{things.reps}}</td>
         <td>{{things.weight}}</td>
-        <td>{{things.date_created}}</td>
+        <td>{{things.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}</td>
+        <td> 
+            <a href = ""> Update</a>
+            <br>
+            <a href = "/delete/{{entries.id}}"> Delete</a>
+        </td>
 </table>
 {% endfor %}
 </div>
