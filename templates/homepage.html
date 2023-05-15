@@ -6,18 +6,24 @@
     <body>
         <div class = "homePageSection">
         <h1>Workout Tracker</h1>
+        {% if entries|length < 1 %}
+        <h3> There are no entries. Add one NOW</h3>
+        {% endif %}
         <table>
             <tr>
                 <th> Entries</th>
+                <th> Date added</th>
             </tr>
             <tr>
-                <td> Something here</td>
+                <td>
+                    <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> link to entry  </a>
+                </td>
+                <!-- Box that allows functions to data-->
                 <td>
                     <a href = ""> Delete</a>
                     <br>
                     <a href = ""> Update</a>
                 </td>
-            </tr>
         </table>
         <button>
             <a href="{{ url_for('add_workout') }}">Add Workout</a>

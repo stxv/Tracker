@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    {% for things in entries %}
+    <p> {{things.exercise}} </p>
+    <p> {{things.sets}} </p>
+    <p> {{things.reps}} </p>
+    <p> {{things.weight}} </p>
+    <p> {{things.date_created}} </p>
+    {% endfor %}
+</html>

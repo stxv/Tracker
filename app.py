@@ -12,10 +12,10 @@ class userdata(db.Model):
     sets = db.Column(db.Integer, nullable=False)
     reps = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Float, nullable=False)
-    """time = db.Column(db.DateTime, default=datetime.utcnow)"""
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"Exercise: {self.exercise}, Sets: {self.sets}, Reps: {self.reps}, Weight: {self.weight}"
+        return f"Exercise: {self.exercise}, Sets: {self.sets}, Reps: {self.reps}, Weight: {self.weight}, Time: {self.date_created}"
 
     
 
@@ -26,24 +26,31 @@ def add_workout():
         sets = request.form['sets']
         reps = request.form['reps']
         weight = request.form['weight']
-        workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
-        db.session.add(workout)
-        db.session.commit()
-        return redirect(url_for('home'))
+        new_workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
+        try:
+            db.session.add(new_workout)
+            db.session.commit()
+            return redirect(url_for('home'))
+        except:
+            return "Issue adding data"
     else:
-        return render_template('add.html')
+        entries = userdata.query.order_by(userdata.date_created).all()
+        return render_template('add.html', entries = entries)
 
 @app.route("/")
 @app.route("/home") 
 def home():
-    workouts = userdata.query.all()
-    return render_template("homepage.html", workouts=workouts)
+    entries = userdata.query.order_by(userdata.date_created).all()
+    return render_template("homepage.html",entries = entries)
 
-
+@app.route('/view', methods=['GET'])
+def view_workout():
+    if request.method == 'GET':
+        entries = userdata.query.order_by(userdata.date_created).all()
+        return render_template("view.html",entries = entries)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
 
-"""Todo: Fix table on homepage, create option to add more execises when creating workout, allow access to database when user creates workout"""
-"""and understand tables"""
+"""TODO: Have created entries add on top of each other on homepage lists, fix table when there are no entries"""
