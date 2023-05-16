@@ -4,9 +4,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
     <body>
-        <title>Add Workout</title> <a href="{{ url_for('home') }}">Return</a>
+        <a href="{{ url_for('home') }}">Return</a>
+        <title>Add Workout</title>
         <h1>Add Workout</h1>
         <form method="POST" action="{{ url_for('add_workout') }}">
+
+            <label for="name">Name for workout (Muscles trained): </label>
+            <input type="text" name="name" required><br><br>
+
             <label for="exercise">Exercise: </label>
             <input type="text" name="exercise" required><br><br>
 

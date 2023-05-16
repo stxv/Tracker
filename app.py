@@ -9,6 +9,7 @@ db = SQLAlchemy(app)
 """Creating the database here"""
 class userdata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
     exercise = db.Column(db.String(50), nullable=False)
     sets = db.Column(db.Integer, nullable=False)
     reps = db.Column(db.Integer, nullable=False)
@@ -23,11 +24,12 @@ class userdata(db.Model):
 @app.route('/add', methods=['GET', 'POST'])
 def add_workout():
     if request.method == 'POST':
+        name = request.form['name']
         exercise = request.form['exercise']
         sets = request.form['sets']
         reps = request.form['reps']
         weight = request.form['weight']
-        new_workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
+        new_workout = userdata(name=name, exercise=exercise, sets=sets, reps=reps, weight=weight)
         try:
             db.session.add(new_workout)
             db.session.commit()

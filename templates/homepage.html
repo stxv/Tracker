@@ -12,18 +12,15 @@
         {% else %}
         <table>
             <tr>
-                <th> Entries</th>
+                <th> Workouts </th>
                 <th> Date added</th>
                 <th> Actions </th>
             </tr>
-
-
-<!--------------------------------------------------->
-{% for things in entries %}
+            {% for things in entries %}
             <tr>
                 <td>
                     
-                    <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> link to entry  </a>
+                    <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> {{things.name}}  </a>
                     
                     <!-- CAN I USE THE ID TO CREATE A SEPARATE PAGE FOR EACH ENTRY USING THESE LOOPS?-->
                 </td>
@@ -38,11 +35,8 @@
                     <br>
                     <a href = "/delete/{{things.id}}"> Delete</a>
                 </td>
-                {% endfor %}
+            {% endfor %}
             </tr>
-
-<!--------------------------------------------------->
-
         </table>
         <button>
             <a href="{{ url_for('add_workout') }}">Add Workout</a>
