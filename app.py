@@ -66,6 +66,7 @@ def delete(id):
     except:
         return "Something went wrong with the deletion"
     
+"""Updating function: DOES NOT WORK YET!!!!!!!!!"""
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
     old_entry = userdata.query.get_or_404(id)
@@ -93,4 +94,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-"""TODO: Have created entries add on top of each other on homepage lists and accessible with each having their own unique information, fix update function"""
+"""TODO: Fix viewpage so that not all entries have other entries, fix update function"""
