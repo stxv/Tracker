@@ -73,11 +73,12 @@ def delete(id):
 def update(id):
     old_entry = userdata.query.get_or_404(id)
     if request.method == "POST":
+        name = request.form['name']
         exercise = request.form['exercise']
         sets = request.form['sets']
         reps = request.form['reps']
         weight = request.form['weight']
-        new_workout = userdata(exercise=exercise, sets=sets, reps=reps, weight=weight)
+        new_workout = userdata(name=name, exercise=exercise, sets=sets, reps=reps, weight=weight)
 
         try:
             db.session.add(new_workout)
