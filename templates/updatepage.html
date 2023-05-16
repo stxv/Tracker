@@ -7,7 +7,10 @@
         <title>Update Workout</title> <a href="{{ url_for('home') }}">Return</a>
         <h1>Update Workout</h1>
         {% block content %}
-        <form method="POST" action="{{ url_for('add_workout') }}">
+        <!--<form method="POST" action="{{ url_for('add_workout') }}"></form> -->
+        <!-- Forgot to change this part which is why my update wasn't working-->
+       <!-- id=current.id assigns old id to new one, -->
+        <form method="POST" action="{{ url_for('update', id=current.id) }}">
 
             <label for="name">Name for workout (Muscles trained): </label>
             <input type="text" name="name" required><br><br>

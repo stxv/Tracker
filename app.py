@@ -68,27 +68,28 @@ def delete(id):
     except:
         return "Something went wrong with the deletion"
     
-"""Updating function: DOES NOT WORK YET!!!!!!!!!"""
+
+"""Updating function"""
+"""Explanation: Gets id of entry clicked, gets all data from that id and assigns to current, then user inputs new data to current data, then it updates"""
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
-    old = userdata.query.get_or_404(id)
+    current = userdata.query.get_or_404(id)
+    """Assigns current data with new data"""
     if request.method == "POST":
-        old.name = request.form['name']
-        old.exercise = request.form['exercise']
-        old.sets = request.form['sets']
-        old.reps = request.form['reps']
-        old.weight = request.form['weight']
+        current.name = request.form['name']
+        current.exercise = request.form['exercise']
+        current.sets = request.form['sets']
+        current.reps = request.form['reps']
+        current.weight = request.form['weight']
 
-        
         try:
             db.session.commit()
             return redirect(url_for('home'))
         except:
             return "There was a problem updating the data"
     else:
-        return render_template('updatepage.html', old=old)
+        return render_template('updatepage.html', current=current)
 
-    
 
 """IDK what name does, dbcreateall makes the database when the program is run, debug allows to see changes quicker"""
 if __name__ == "__main__":
