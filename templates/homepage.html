@@ -10,26 +10,27 @@
         <h3> There are no entries. Add one NOW</h3>
         <a href="{{ url_for('add_workout') }}">Add Workout</a>
         {% else %}
+        <!-- Table -->
         <table>
             <tr>
                 <th> Workouts </th>
                 <th> Date added</th>
                 <th> Actions </th>
             </tr>
+            <!-- End of top row of homepage-->
+
+            <!-- Creates a loop for each entry and gives each one a new row along with columns for information -->
             {% for things in entries %}
+            <!-- Link to viewpage of each entry-->
             <tr>
                 <td>
-                    
                     <a href="{{ url_for('view_workout', workout_id=entries.id) }}"> {{things.name}}  </a>
-                    
-                    <!-- CAN I USE THE ID TO CREATE A SEPARATE PAGE FOR EACH ENTRY USING THESE LOOPS?-->
                 </td>
-                <!-- Box that allows functions to data-->
+                <!-- Date for each entry-->
                 <td>
-                    
                     {{things.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}
-                    
                 </td>
+                <!-- Action buttons-->
                 <td>
                     <a href = "/update/{{things.id}}"> Update</a>
                     <br>
@@ -38,6 +39,7 @@
             {% endfor %}
             </tr>
         </table>
+        <!-- New button to return home-->
         <button>
             <a href="{{ url_for('add_workout') }}">Add Workout</a>
         </button>

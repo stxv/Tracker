@@ -8,6 +8,7 @@
     {% for things in entries %}
 <table>
     <tr>
+        <th> Name </th>
         <th> Exercise </th>
         <th> Sets</th>
         <th> Reps </th>
@@ -15,6 +16,7 @@
         <th> Time created </th>
         <th> Actions</th>
     </tr>
+        <td>{{things.name}} </td>
         <td>{{things.exercise}} </td>
         <td>{{things.sets}} </td>
         <td>{{things.reps}}</td>

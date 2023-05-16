@@ -71,23 +71,22 @@ def delete(id):
 """Updating function: DOES NOT WORK YET!!!!!!!!!"""
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
-    old_entry = userdata.query.get_or_404(id)
+    old = userdata.query.get_or_404(id)
     if request.method == "POST":
-        name = request.form['name']
-        exercise = request.form['exercise']
-        sets = request.form['sets']
-        reps = request.form['reps']
-        weight = request.form['weight']
-        new_workout = userdata(name=name, exercise=exercise, sets=sets, reps=reps, weight=weight)
+        old.name = request.form['name']
+        old.exercise = request.form['exercise']
+        old.sets = request.form['sets']
+        old.reps = request.form['reps']
+        old.weight = request.form['weight']
 
+        
         try:
-            db.session.add(new_workout)
             db.session.commit()
             return redirect(url_for('home'))
         except:
             return "There was a problem updating the data"
     else:
-        return render_template('updatepage.html', old_entry=old_entry)
+        return render_template('updatepage.html', old=old)
 
     
 
@@ -97,4 +96,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-"""TODO: Fix viewpage so that not all entries have other entries, fix update function"""
+"""TODO: Fix viewpage and update function"""
