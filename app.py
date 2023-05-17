@@ -15,7 +15,7 @@ class userdata(db.Model):
     reps = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.now())
-
+    
     def __repr__(self):
         return f"Exercise: {self.exercise}, Sets: {self.sets}, Reps: {self.reps}, Weight: {self.weight}, Time: {self.date_created}"
 
@@ -97,4 +97,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-"""TODO: Fix viewpage and update function"""
+"""TODO: Fix viewpage"""
