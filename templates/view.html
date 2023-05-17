@@ -5,7 +5,6 @@
 </head>
 <div class="viewpage"></div>
     <a href="{{ url_for('home') }}">Return</a>
-    {% for things in entries %}
 <table>
     <tr>
         <th> Name </th>
@@ -16,18 +15,17 @@
         <th> Time created </th>
         <th> Actions</th>
     </tr>
-        <td>{{things.name}} </td>
-        <td>{{things.exercise}} </td>
-        <td>{{things.sets}} </td>
-        <td>{{things.reps}}</td>
-        <td>{{things.weight}}</td>
-        <td>{{things.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}</td>
+        <td>{{entries.name}} </td>
+        <td>{{entries.exercise}} </td>
+        <td>{{entries.sets}} </td>
+        <td>{{entries.reps}}</td>
+        <td>{{entries.weight}}</td>
+        <td>{{entries.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}</td>
         <td> 
-            <a href = "/update/{{things.id}}"> Update</a>
+            <a href = "/update/{{entries.id}}"> Update</a>
             <br>
-            <a href = "/delete/{{things.id}}"> Delete</a>
+            <a href = "/delete/{{entries.id}}"> Delete</a>
         </td>
 </table>
-{% endfor %}
 </div>
 </html>

@@ -50,11 +50,10 @@ def home():
 
 
 """Route that takes user to a viewing page to see entries"""
-@app.route('/view', methods=['GET'])
-def view_workout():
-    if request.method == 'GET':
-        entries = userdata.query.all()
-        return render_template("view.html",entries = entries)
+@app.route('/view/<int:id>', methods=['GET'])
+def view_workout(id):
+    entries = userdata.query.get_or_404(id)
+    return render_template("view.html",entries = entries)
     
     
 """Deleting function"""
