@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
-"""Creating the database here"""
+#Creating the database here
 class userdata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -19,8 +19,8 @@ class userdata(db.Model):
     def __repr__(self):
         return f"Exercise: {self.exercise}, Sets: {self.sets}, Reps: {self.reps}, Weight: {self.weight}, Time: {self.date_created}"
 
-    
-"""Creating the add function"""
+
+#Creating the add function
 @app.route('/add', methods=['GET', 'POST'])
 def add_workout():
     if request.method == 'POST':
@@ -41,7 +41,7 @@ def add_workout():
         return render_template('add.html', entries = entries)
     
 
-"""Route that takes user to homepage"""
+#Route that takes user to homepage
 @app.route("/")
 @app.route("/home") 
 def home():
@@ -49,14 +49,15 @@ def home():
         return render_template("homepage.html",entries = entries)
 
 
-"""Route that takes user to a viewing page to see entries"""
+#Route that takes user to a viewing page to see entries
+#Change in the homepage link that leads to the page fixed issue
 @app.route('/view/<int:id>', methods=['GET'])
 def view_workout(id):
     entries = userdata.query.get_or_404(id)
     return render_template("view.html",entries = entries)
     
     
-"""Deleting function"""
+#Deleting function
 @app.route("/delete/<int:id>")
 def delete(id):
     desired_entry = userdata.query.get_or_404(id)
@@ -68,12 +69,12 @@ def delete(id):
         return "Something went wrong with the deletion"
     
 
-"""Updating function"""
-"""Explanation: Gets id of entry clicked, gets all data from that id and assigns to current, then user inputs new data to current data, then it updates"""
+#Updating function
+#Explanation: Gets id of entry clicked, gets all data from that id and assigns to current, then user inputs new data to current data, then it updates
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
     current = userdata.query.get_or_404(id)
-    """Assigns current data with new data"""
+    #Assigns current data with new data
     if request.method == "POST":
         current.name = request.form['name']
         current.exercise = request.form['exercise']
@@ -90,10 +91,10 @@ def update(id):
         return render_template('updatepage.html', current=current)
 
 
-"""IDK what name does, dbcreateall makes the database when the program is run, debug allows to see changes quicker"""
+#IDK what name does, dbcreateall makes the database when the program is run, debug allows to see changes quicker
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
 
-"""TODO: Fix viewpage"""
+#TODO: Develop a feature that allows to add more than one exercise for each entry, fix time submission
