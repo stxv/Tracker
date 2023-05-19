@@ -6,10 +6,12 @@
     <body>
         <div class = "homePageSection">
         <h1>Workout Tracker</h1>
+        <!--If there are no entries-->
         {% if entries|length < 1 %}
         <h3> There are no entries. Add one NOW</h3>
         <a href="{{ url_for('add_workout') }}">Add Workout</a>
         {% else %}
+        
         <!-- Table -->
         <table>
             <tr>
@@ -39,7 +41,7 @@
             {% endfor %}
             </tr>
         </table>
-        <!-- New button to return home-->
+        <!-- Button to add-->
         <button>
             <a href="{{ url_for('add_workout') }}">Add Workout</a>
         </button>

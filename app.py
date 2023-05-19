@@ -33,12 +33,14 @@ def add_workout():
         try:
             db.session.add(new_workout)
             db.session.commit()
+            print("User has added an entry and is taken to the homepage")
             return redirect(url_for('home'))
         except:
             return "Something went wrong while adding the data"
     else:
         entries = userdata.query.order_by(userdata.date_created).first()
         return render_template('add.html', entries = entries)
+    
     
 
 #Route that takes user to homepage
@@ -54,6 +56,7 @@ def home():
 @app.route('/view/<int:id>', methods=['GET'])
 def view_workout(id):
     entries = userdata.query.get_or_404(id)
+    print(f"User is is viewing entry {id}")
     return render_template("view.html",entries = entries)
     
     
@@ -64,6 +67,7 @@ def delete(id):
     try:
         db.session.delete(desired_entry)
         db.session.commit()
+        print(f"User deleted entry {id}")
         return redirect("/")
     except:
         return "Something went wrong with the deletion"
@@ -84,12 +88,12 @@ def update(id):
 
         try:
             db.session.commit()
+            print("User clicks update")
             return redirect(url_for('home'))
         except:
             return "There was a problem updating the data"
     else:
         return render_template('updatepage.html', current=current)
-
 
 #IDK what name does, dbcreateall makes the database when the program is run, debug allows to see changes quicker
 if __name__ == "__main__":
@@ -98,3 +102,4 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 #TODO: Develop a feature that allows to add more than one exercise for each entry
+# When a user adds a workout to the entry -> commit that entry and display it in the page (if entry < 1) = must add entry, then it'll be displayable
