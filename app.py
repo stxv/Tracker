@@ -29,7 +29,7 @@ def add_workout():
         sets = request.form['sets']
         reps = request.form['reps']
         weight = request.form['weight']
-        new_workout = userdata(name=name, exercise=exercise, sets=sets, reps=reps, weight=weight)
+        new_workout = userdata(name=name, exercise=exercise, sets=sets, reps=reps, weight=weight, date_created = datetime.now())
         try:
             db.session.add(new_workout)
             db.session.commit()
@@ -97,4 +97,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-#TODO: Develop a feature that allows to add more than one exercise for each entry, fix time submission
+#TODO: Develop a feature that allows to add more than one exercise for each entry, fix time submission (date added / time created defaults to time the program was ran rather than current time)
