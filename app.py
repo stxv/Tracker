@@ -97,4 +97,4 @@ if __name__ == "__main__":
         db.create_all()
     app.run(debug=True)
 
-#TODO: Develop a feature that allows to add more than one exercise for each entry, fix time submission (date added / time created defaults to time the program was ran rather than current time)
+#TODO: Develop a feature that allows to add more than one exercise for each entry

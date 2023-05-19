@@ -20,11 +20,11 @@
         <td>{{entries.sets}} </td>
         <td>{{entries.reps}}</td>
         <td>{{entries.weight}}</td>
-        <td>{{entries.date_created.strftime('%Y-%m-%d %I:%M:%S %p')}}</td>
-        <td> 
-            <a href = "/update/{{entries.id}}"> Update</a>
-            <br>
+        <td>{{entries.date_created.strftime('%m/%d/%Y %I:%M:%S %p')}}</td>
+        <td>
             <a href = "/delete/{{entries.id}}"> Delete</a>
+            <br>
+            <a href = "/update/{{entries.id}}"> Update</a>
         </td>
 </table>
 </div>
