@@ -8,7 +8,7 @@
         <h1>Workout Tracker</h1>
         <!--If there are no entries-->
         {% if entries|length < 1 %}
-        <h3> There are no entries. Add one NOW</h3>
+        <h3> There are no entries yet. Add one!</h3>
         <a href="{{ url_for('add_workout') }}">Add Workout</a>
         {% else %}
         
@@ -16,7 +16,7 @@
         <table>
             <tr>
                 <th> Workouts </th>
-                <th> Date added</th>
+                <th> Date Added</th>
                 <th> Actions </th>
             </tr>
             <!-- End of top row of homepage-->

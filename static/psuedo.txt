@@ -1,6 +1,4 @@
-Add workout button on homepage is clicked and from the python file the add_workout() is accessed
-We are now in the add.html part of the code and in the add_workout() part of the python file
-Inputs are typed into the table and once submitted, is comitted to the database and we are taken back to the home page to see that the entry was created
-
-But can I change it so that a button commits the data but doesnt immediately take us back to the homepage?
-Would it be a function that is called when clicked similar to the submit button?
+Clicks add workout
+Types information
+Click submit workout which adds information to database and commits immediately
+How do I make it so that it just adds and not commits 

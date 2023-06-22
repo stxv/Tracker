@@ -11,22 +11,20 @@
         <!-- Forgot to change this part which is why my update wasn't working-->
        <!-- id=current.id assigns old id to new one, -->
         <form method="POST" action="{{ url_for('update', id=current.id) }}">
-
-            <label for="name">Name for workout (Muscles trained): </label>
-            <input type="text" name="name" value = {{current.name}} required><br><br>
-
-            <label for="exercise">Exercise: </label>
-            <input type="text" name="exercise" value = {{current.exercise}} required><br><br>
-
-            <label for="sets">Sets: </label>
-            <input type="number" name="sets" value = {{current.sets}} required><br><br>
-
-            <label for="reps">Reps: </label>
-            <input type="number" name="reps" value = {{current.reps}} required><br><br>
-
-            <label for="weight">Weight: </label>
-            <input type="number" name="weight" value = {{current.weight}} required><br><br>
-            
+            <table>
+                <tr>
+                    <th> <label for="name">Name for workout (Muscles trained): </label> </th>
+                    <th> <label for="exercise">Exercise </label> </th>
+                    <th> <label for="sets">Sets </label> </th>
+                    <th> <label for="reps">Reps </label> </th>
+                    <th> <label for="weight">Weight (lbs) </label> </th>
+                </tr>
+                    <td> <input type="text" name="name" value = {{current.name}} required><br><br> </td>
+                    <td> <input type="text" name="exercise" value = {{current.exercise}} required><br><br> </td>
+                    <td> <input type="number" name="sets" value = {{current.sets}} required><br><br> </td>
+                    <td> <input type="number" name="reps" value = {{current.reps}} required><br><br></td>
+                    <td> <input type="number" name="weight" value = {{current.weight}} required><br><br> </td>
+            </table>
             <input type="submit" value="Update Workout">
         {% endblock %}
         </form>

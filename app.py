@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime 
 
@@ -40,7 +40,7 @@ def add_workout():
     else:
         entries = userdata.query.order_by(userdata.date_created).first()
         return render_template('add.html', entries = entries)
-    
+
     
 
 #Route that takes user to homepage
